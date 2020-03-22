@@ -54,10 +54,14 @@ class FunctionalityService {
   }
 
   async deleteFunctionality(functionality) {
-    console.log("functionality to delete", functionality);
-    return Promise.resolve({
-      message: "functionality deleted!"
-    });
+    const response = await axios.delete(
+      API_URL + "functionalities/" + functionality.id,
+      { headers: authHeader() }
+    );
+
+    const { data } = response;
+
+    return data;
   }
 
   async createCompany(company) {
