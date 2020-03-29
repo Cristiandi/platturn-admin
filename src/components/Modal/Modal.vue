@@ -46,6 +46,7 @@
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
+  overflow-y: initial !important;
 }
 
 .modal-container {
@@ -65,6 +66,8 @@
 
 .modal-body {
   margin: 20px 0;
+  overflow-y: auto;
+  height: 350px;
 }
 
 .modal-default-button {

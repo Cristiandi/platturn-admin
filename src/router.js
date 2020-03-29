@@ -6,6 +6,7 @@ import ForgotPassword from "./views/ForgotPassword.vue";
 import ResetPassword from "./views/ResetPassword.vue";
 
 import Functionalities from "./views/functiionality/Functionalities.vue";
+import Screens from "./views/screen/Screens.vue";
 
 Vue.use(Router);
 
@@ -60,6 +61,11 @@ export const router = new Router({
       path: "/functionalities",
       name: "functionalities",
       component: Functionalities
+    },
+    {
+      path: "/screens",
+      name: "screens",
+      component: Screens
     }
   ]
 });
