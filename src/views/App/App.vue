@@ -8,7 +8,7 @@
 
     <SideBar v-bind:currentUser="currentUser" v-bind:bus="bus" ref="sideBar" />
 
-    <div class="container">
+    <div class="container-fluid">
       <router-view />
     </div>
   </div>

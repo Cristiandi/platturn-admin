@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" id="main">
     <div
       class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 centered"
     >
@@ -131,6 +131,13 @@ export default {
 </script>
 
 <style scoped>
+#main {
+  background-image: url("../assets/login-bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
 span .validation {
   color: red;
 }
