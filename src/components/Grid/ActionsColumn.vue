@@ -11,17 +11,17 @@
         <font-awesome-icon
           v-if="action.name === 'edit'"
           icon="edit"
-          size="sm"
+          size="xs"
         />
         <font-awesome-icon
           v-else-if="action.name === 'delete'"
           icon="trash-alt"
-          size="sm"
+          size="xs"
         />
         <font-awesome-icon
           v-else-if="action.name === 'view'"
           icon="eye"
-          size="sm"
+          size="xs"
         />
         <span v-else>{{ action.description }}</span>
       </button>
