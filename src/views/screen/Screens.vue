@@ -39,6 +39,7 @@
         v-bind:rows="screens"
         v-bind:columns="columms"
         v-bind:filterKey="searchQuery"
+        v-bind:limit="5"
         v-bind:bus="bus"
       />
     </div>
