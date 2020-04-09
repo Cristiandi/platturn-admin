@@ -53,7 +53,7 @@ export default {
     };
   },
   watch: {
-    currentUser: function(val) {
+    currentUser: function (val) {
       console.log("val", val);
       if (val) this.loadMenu();
     }

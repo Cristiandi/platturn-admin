@@ -100,7 +100,7 @@ export default {
   },
   data() {
     let sortOrders = {};
-    this.columns.forEach(function(key) {
+    this.columns.forEach(function (key) {
       sortOrders[key] = 1;
     });
 
@@ -123,16 +123,12 @@ export default {
       if (filterKey) {
         rows = rows.filter(row => {
           return Object.keys(row).some(key => {
-            return (
-              String(row[key])
-                .toLowerCase()
-                .indexOf(filterKey) > -1
-            );
+            return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
           });
         });
       }
       if (sortKey) {
-        rows = rows.slice().sort(function(a, b) {
+        rows = rows.slice().sort(function (a, b) {
           a = a[sortKey];
           b = b[sortKey];
           return (a === b ? 0 : a > b ? 1 : -1) * order;
@@ -188,13 +184,13 @@ export default {
     }
   },
   filters: {
-    capitalize: function(str) {
+    capitalize: function (str) {
       // return str.charAt(0).toUpperCase() + str.slice(1);
       return str.toUpperCase();
     }
   },
   methods: {
-    sortBy: function(key) {
+    sortBy: function (key) {
       this.sortKey = key;
       this.sortOrders[key] = this.sortOrders[key] * -1;
     },

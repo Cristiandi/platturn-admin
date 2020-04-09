@@ -12,7 +12,7 @@
                 label="name"
                 v-model="screenToUpdate.functionalityId"
                 :options="functionalities"
-                :reduce="item => item.id"
+                :reduce="(item) => item.id"
                 value="id"
               ></v-select>
               <span class="validation">{{ errors[0] }}</span>
