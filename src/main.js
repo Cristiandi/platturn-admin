@@ -1,9 +1,5 @@
 import Vue from "vue";
-import App from "./views/App/App.vue";
-import { router } from "./router";
-import store from "./store";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import vSelect from "vue-select";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -18,6 +14,14 @@ import {
   faTrashAlt,
   faEye
 } from "@fortawesome/free-solid-svg-icons";
+
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "vue-select/dist/vue-select.css";
+
+import App from "./views/App/App.vue";
+import { router } from "./router";
+import store from "./store";
 
 library.add(
   faHome,
@@ -34,6 +38,7 @@ library.add(
 
 Vue.config.productionTip = false;
 
+Vue.component("v-select", vSelect);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 new Vue({

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col">
+    <div class="col-md-6 offset-md-3">
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -27,24 +27,6 @@
                 alt=""
                 class="mx-auto rounded-circle img-fluid"
               />
-              <br />
-              <ul class="list-inline ratings text-center" title="Ratings">
-                <li class="list-inline-item">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#"><span class="fa fa-star"></span></a>
-                </li>
-              </ul>
             </div>
             <div class="col-md-4">
               <small>¿Mal email?</small>

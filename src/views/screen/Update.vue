@@ -6,21 +6,15 @@
           <div class="form-group">
             <label for="functionalityId">Funcionalidad</label>
             <validation-provider rules="required" v-slot="{ errors }">
-              <select
-                id="screen"
-                name="screen"
+              <v-select
+                id="functionality"
+                name="functionality"
+                label="name"
                 v-model="screenToUpdate.functionalityId"
-                class="form-control"
-              >
-                <option value="" selected>Seleccionar...</option>
-                <option
-                  v-for="functionality in functionalities"
-                  :key="functionality.id"
-                  :value="functionality.id"
-                >
-                  {{ functionality.name }}
-                </option>
-              </select>
+                :options="functionalities"
+                :reduce="item => item.id"
+                value="id"
+              ></v-select>
               <span class="validation">{{ errors[0] }}</span>
             </validation-provider>
           </div>
