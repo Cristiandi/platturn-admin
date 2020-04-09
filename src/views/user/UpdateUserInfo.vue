@@ -134,13 +134,13 @@ export default {
       this.submitted = true;
 
       userService.updateUserData(this.user).then(
-        data => {
+        (data) => {
           this.message = data.message;
           this.successful = true;
 
           this.$store.dispatch("auth/refreshUser", data);
         },
-        error => {
+        (error) => {
           this.successful = false;
 
           this.message = getFromObjectPathParsed(

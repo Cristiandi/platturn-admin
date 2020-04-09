@@ -128,13 +128,13 @@ export default {
         this.user.resetPasswordCode = this.code;
 
         this.$store.dispatch("auth/resetPassword", this.user).then(
-          data => {
+          (data) => {
             this.loading = false;
             this.successful = true;
             this.message = data.message;
             this.submitted = true;
           },
-          error => {
+          (error) => {
             this.loading = false;
             this.successful = false;
             this.submitted = true;

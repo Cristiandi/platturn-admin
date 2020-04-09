@@ -103,7 +103,7 @@ export default {
     async loadScreens() {
       try {
         const data = await screenService.getScreens();
-        this.screens = data.map(item => {
+        this.screens = data.map((item) => {
           return {
             ...item,
             actions: [

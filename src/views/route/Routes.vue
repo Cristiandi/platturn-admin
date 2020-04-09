@@ -103,7 +103,7 @@ export default {
     async loadRoutes() {
       try {
         const data = await routeService.getRoutes();
-        this.routes = data.map(item => {
+        this.routes = data.map((item) => {
           return {
             ...item,
             actions: [

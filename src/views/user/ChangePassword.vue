@@ -131,7 +131,7 @@ export default {
       this.submitted = true;
 
       userService.changePassword(this.user).then(
-        data => {
+        (data) => {
           this.user.email = this.currentUser.email;
 
           this.$store.dispatch("auth/logout");
@@ -142,7 +142,7 @@ export default {
               this.successful = true;
               this.message = data.message;
             },
-            error => {
+            (error) => {
               this.loading = false;
               this.successful = false;
               this.message = getFromObjectPathParsed(
@@ -162,7 +162,7 @@ export default {
           this.successful = true;
           this.message = data.message;
         },
-        error => {
+        (error) => {
           this.loading = false;
           this.successful = false;
           this.message = getFromObjectPathParsed(

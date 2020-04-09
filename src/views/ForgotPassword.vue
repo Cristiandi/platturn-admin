@@ -93,12 +93,12 @@ export default {
       this.submitted = true;
       if (this.user.email) {
         this.$store.dispatch("auth/sendForgotPasswordEmail", this.user).then(
-          data => {
+          (data) => {
             this.loading = false;
             this.successful = true;
             this.message = data.message;
           },
-          error => {
+          (error) => {
             this.loading = false;
             this.message = getFromObjectPathParsed(
               error,

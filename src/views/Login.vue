@@ -109,7 +109,7 @@ export default {
           () => {
             this.$router.push("/dashboard");
           },
-          error => {
+          (error) => {
             this.loading = false;
 
             this.message = getFromObjectPathParsed(

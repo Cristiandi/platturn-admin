@@ -110,7 +110,7 @@ export default {
     async loadFunctionalities() {
       try {
         const data = await functionalityService.getFunctionalities();
-        this.functionalities = data.map(item => {
+        this.functionalities = data.map((item) => {
           return {
             ...item,
             actions: [

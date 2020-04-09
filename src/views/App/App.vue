@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     if (this.currentUser) {
-      userService.validateToken().catch(error => {
+      userService.validateToken().catch((error) => {
         console.error(error);
         this.$store.dispatch("auth/logout");
         this.$router.push("/login");

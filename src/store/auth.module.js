@@ -12,11 +12,11 @@ export const auth = {
   actions: {
     login({ commit }, user) {
       return AuthService.login(user).then(
-        user => {
+        (user) => {
           commit("loginSuccess", user);
           return Promise.resolve(user);
         },
-        error => {
+        (error) => {
           commit("loginFailure");
           return Promise.reject(error);
         }
@@ -28,11 +28,11 @@ export const auth = {
     },
     register({ commit }, user) {
       return AuthService.register(user).then(
-        response => {
+        (response) => {
           commit("registerSuccess");
           return Promise.resolve(response.data);
         },
-        error => {
+        (error) => {
           commit("registerFailure");
           return Promise.reject(error);
         }
@@ -40,11 +40,11 @@ export const auth = {
     },
     sendConfirmationEmail({ commit }, user) {
       return AuthService.sendConfimationEmail(user).then(
-        response => {
+        (response) => {
           commit("sendConfirmationEmailSuccess");
           return Promise.resolve(response.data);
         },
-        error => {
+        (error) => {
           commit("sendConfirmationEmailFailure");
           return Promise.reject(error);
         }
@@ -52,11 +52,11 @@ export const auth = {
     },
     sendForgotPasswordEmail({ commit }, user) {
       return AuthService.sendForgotPasswordEmail(user).then(
-        response => {
+        (response) => {
           commit("sendForgotPasswordEmailSuccess");
           return Promise.resolve(response.data);
         },
-        error => {
+        (error) => {
           commit("sendForgotPasswordEmailFailure");
           return Promise.reject(error);
         }
@@ -64,11 +64,11 @@ export const auth = {
     },
     resetPassword({ commit }, user) {
       return AuthService.resetPassword(user).then(
-        response => {
+        (response) => {
           commit("resetPasswordSuccess");
           return Promise.resolve(response.data);
         },
-        error => {
+        (error) => {
           commit("resetPasswordFailure");
           return Promise.reject(error);
         }

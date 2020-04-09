@@ -114,7 +114,7 @@ export default {
       this.submitted = true;
 
       userService.changeEmailAddress(this.user).then(
-        data => {
+        (data) => {
           this.loading = false;
           this.successful = true;
           this.message = data.message;
@@ -125,7 +125,7 @@ export default {
             this.$router.push("/login");
           }, 5000);
         },
-        error => {
+        (error) => {
           this.loading = false;
           this.successful = false;
           this.message = getFromObjectPathParsed(

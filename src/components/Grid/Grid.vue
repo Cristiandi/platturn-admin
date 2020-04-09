@@ -121,8 +121,8 @@ export default {
       let rows = this.rows;
 
       if (filterKey) {
-        rows = rows.filter(row => {
-          return Object.keys(row).some(key => {
+        rows = rows.filter((row) => {
+          return Object.keys(row).some((key) => {
             return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
           });
         });

@@ -18,10 +18,10 @@ export default {
   },
   mounted() {
     UserService.getPublicContent().then(
-      response => {
+      (response) => {
         this.content = response.data;
       },
-      error => {
+      (error) => {
         this.content =
           (error.response && error.response.data) ||
           error.message ||

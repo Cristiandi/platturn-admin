@@ -76,10 +76,10 @@ export default {
     },
     loadMenu() {
       userService.getUserScreens().then(
-        data => {
+        (data) => {
           this.functionalities = data;
         },
-        error => {
+        (error) => {
           console.error(error);
         }
       );
