@@ -52,16 +52,14 @@ class RouteService {
     return data;
   }
 
-  /*
-  async createScreen(screen) {
-    console.log("screen", screen);
+  async createRoute(route) {
+    console.log("route", route);
     const response = await axios.post(
-      API_URL + "screens",
+      API_URL + "routes",
       {
-        name: screen.name,
-        path: screen.path,
-        relativePath: screen.relativePath,
-        functionalityId: screen.functionalityId
+        httpMethod: route.httpMethod,
+        path: route.path,
+        public: route.public
       },
       { headers: authHeader() }
     );
@@ -71,14 +69,13 @@ class RouteService {
     return data;
   }
 
-  async updateScreen(screen) {
+  async updateRoute(route) {
     const response = await axios.patch(
-      API_URL + "screens/" + screen.id,
+      API_URL + "routes/" + route.id,
       {
-        name: screen.name,
-        path: screen.path,
-        relativePath: screen.relativePath,
-        functionalityId: screen.functionalityId
+        httpMethod: route.httpMethod,
+        path: route.path,
+        isPublic: route.isPublic
       },
       { headers: authHeader() }
     );
@@ -88,8 +85,8 @@ class RouteService {
     return data;
   }
 
-  async deleteScreen(screen) {
-    const response = await axios.delete(API_URL + "screens/" + screen.id, {
+  async deleteRoute(route) {
+    const response = await axios.delete(API_URL + "routes/" + route.id, {
       headers: authHeader()
     });
 
@@ -97,7 +94,6 @@ class RouteService {
 
     return data;
   }
-  */
 }
 
 export default new RouteService();

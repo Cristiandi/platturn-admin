@@ -46,18 +46,18 @@
     <!-- use the modal component, pass in the prop -->
     <Modal v-if="showCreatingModal" @close="endCreating()">
       <h3 slot="header">Creación</h3>
-      <!-- <Create v-bind:bus="bus" slot="body" /> -->
+      <Create v-bind:bus="bus" slot="body" />
     </Modal>
 
     <!-- use the modal component, pass in the prop -->
     <Modal v-if="showUpdatingModal" @close="endUpdating()">
       <h3 slot="header">Actualizar</h3>
-      <!-- <Update v-bind:bus="bus" v-bind:route="currentRoute" slot="body" /> -->
+      <Update v-bind:bus="bus" v-bind:route="currentRoute" slot="body" />
     </Modal>
 
     <Modal v-if="showDeletingModel" @close="endDeleting()">
       <h3 slot="header">Eliminar</h3>
-      <!-- <Delete v-bind:bus="bus" v-bind:route="currentRoute" slot="body" /> -->
+      <Delete v-bind:bus="bus" v-bind:route="currentRoute" slot="body" />
     </Modal>
   </div>
 </template>
@@ -65,9 +65,9 @@
 import Vue from "vue";
 import Grid from "../../components/Grid/Grid";
 import Modal from "../../components/Modal/Modal";
-// import Create from "./Create";
-// import Update from "./Update";
-// import Delete from "./Delete";
+import Create from "./Create";
+import Update from "./Update";
+import Delete from "./Delete";
 import routeService from "../../services/route.service";
 import { getFromObjectPathParsed } from "../../utils/functions";
 
@@ -89,10 +89,10 @@ export default {
   },
   components: {
     Grid,
-    Modal
-    // Create,
-    // Update,
-    // Delete
+    Modal,
+    Create,
+    Update,
+    Delete
   },
   computed: {
     loggedIn() {
@@ -157,7 +157,7 @@ export default {
     }
 
     this.loadRoutes();
-    this.bus.$on("load-routes", this.loadRoutess);
+    this.bus.$on("load-routes", this.loadRoutes);
     this.bus.$on("end-creating", this.endCreating);
     this.bus.$on("init-updating", this.initUpdating);
     this.bus.$on("end-updating", this.endUpdating);
