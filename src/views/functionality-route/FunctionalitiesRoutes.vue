@@ -65,7 +65,7 @@
 import Vue from "vue";
 import Grid from "../../components/Grid/Grid";
 import Modal from "../../components/Modal/Modal";
-// import Create from "./Create";
+import Create from "./Create";
 // import Update from "./Update";
 // import Delete from "./Delete";
 import functionalityRouteService from "../../services/functionality-route.service";
@@ -89,8 +89,8 @@ export default {
   },
   components: {
     Grid,
-    Modal
-    // Create,
+    Modal,
+    Create
     // Update,
     // Delete
   },
