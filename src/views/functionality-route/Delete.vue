@@ -22,16 +22,15 @@
   </div>
 </template>
 <script>
-import Route from "../../models/route";
-import routeService from "../../services/route.service";
+import functionalityRouteService from "../../services/functionality-route.service";
 import { getFromObjectPathParsed } from "../../utils/functions";
 
 export default {
   name: "DeleteFunctionality",
   props: {
-    route: {
+    current: {
       type: Object,
-      default: () => new Route({})
+      default: null
     },
     bus: {
       type: Object,
@@ -40,7 +39,7 @@ export default {
   },
   data() {
     return {
-      routeToDelete: { ...this.route },
+      objectToDelete: { ...this.current },
       loading: false,
       message: ""
     };
@@ -52,10 +51,10 @@ export default {
       // console.log("onSubmit delete");
 
       try {
-        await routeService.deleteRoute(this.routeToDelete);
+        await functionalityRouteService.deleteOne(this.objectToDelete);
         this.bus.$emit("end-deleting");
         setTimeout(() => {
-          this.bus.$emit("load-routes");
+          this.bus.$emit("load-functionalities-routes");
         }, 2000);
 
         this.successful = true;

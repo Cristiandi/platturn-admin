@@ -4,40 +4,34 @@
       <validation-observer ref="form" v-slot="{ handleSubmit }">
         <form name="form" @submit.prevent="handleSubmit(onSubmitUpdate)">
           <div class="form-group">
-            <label for="httpMethod">HTTP Method</label>
+            <label for="functionalityId">Funcionalidad</label>
             <validation-provider rules="required" v-slot="{ errors }">
-              <input
-                v-model="routeToUpdate.httpMethod"
-                type="text"
-                class="form-control"
-                name="httpMethod"
-                id="httpMethod"
-              />
+              <v-select
+                id="functionality"
+                name="functionality"
+                label="name"
+                v-model="objectToUpdate.functionalityId"
+                :options="functionalities"
+                :reduce="(item) => item.id"
+                value="id"
+              ></v-select>
               <span class="validation">{{ errors[0] }}</span>
             </validation-provider>
           </div>
           <div class="form-group">
-            <label for="code">Path</label>
+            <label for="routeId">Ruta</label>
             <validation-provider rules="required" v-slot="{ errors }">
-              <input
-                v-model="routeToUpdate.path"
-                type="text"
-                class="form-control"
-                name="path"
-                id="path"
-              />
+              <v-select
+                id="routeId"
+                name="route"
+                label="routeDescription"
+                v-model="objectToUpdate.routeId"
+                :options="routes"
+                :reduce="(item) => item.id"
+                value="id"
+              ></v-select>
               <span class="validation">{{ errors[0] }}</span>
             </validation-provider>
-          </div>
-          <div class="form-group form-check">
-            <input
-              v-model="routeToUpdate.isPublic"
-              type="checkbox"
-              class="form-check-input"
-              id="isPublic"
-              name="isPublic"
-            />
-            <label class="form-check-label" for="isPublic">Is public?</label>
           </div>
           <div class="form-group">
             <div v-if="message" class="alert alert-danger" role="alert">
@@ -61,7 +55,8 @@
 <script>
 import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
 import { required } from "vee-validate/dist/rules";
-import Route from "../../models/route";
+import functionalityRouteService from "../../services/functionality-route.service";
+import functionalityService from "../../services/functionality.service";
 import routeService from "../../services/route.service";
 import { getFromObjectPathParsed } from "../../utils/functions";
 
@@ -72,11 +67,11 @@ extend("required", {
 });
 
 export default {
-  name: "UpdateRoute",
+  name: "UpdateFunctionalityRoute",
   props: {
-    route: {
+    current: {
       type: Object,
-      default: () => new Route({})
+      default: null
     },
     bus: {
       type: Object,
@@ -85,22 +80,27 @@ export default {
   },
   data() {
     return {
-      routeToUpdate: { ...this.route },
+      objectToUpdate: { ...this.current },
+      functionalities: [],
+      routes: [],
       loading: false,
       message: ""
     };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
   },
   methods: {
     async onSubmitUpdate() {
       this.loading = true;
 
-      // console.log("onSubmit update");
-
       try {
-        await routeService.updateRoute(this.routeToUpdate);
+        await functionalityRouteService.updateOne(this.objectToUpdate);
         this.bus.$emit("end-updating");
         setTimeout(() => {
-          this.bus.$emit("load-routes");
+          this.bus.$emit("load-functionalities-routes");
         }, 2000);
 
         this.successful = true;
@@ -110,11 +110,43 @@ export default {
         this.loading = false;
         this.message = getFromObjectPathParsed(error, "response.data.message");
       }
+    },
+    async loadFunctionalities() {
+      try {
+        const data = await functionalityService.getFunctionalities();
+        this.functionalities = data;
+        this.successful = true;
+      } catch (error) {
+        this.successful = false;
+        this.message = getFromObjectPathParsed(error, "response.data.message");
+      }
+    },
+    async loadRoutes() {
+      try {
+        const data = await routeService.getRoutes();
+        this.routes = data.map((item) => ({
+          ...item,
+          routeDescription: `${item.httpMethod} ${item.path}`
+        }));
+        this.successful = true;
+      } catch (error) {
+        this.successful = false;
+        this.message = getFromObjectPathParsed(error, "response.data.message");
+      }
     }
   },
   components: {
     ValidationProvider,
     ValidationObserver
+  },
+  mounted() {
+    if (!this.loggedIn) {
+      this.$router.push("/login");
+    }
+
+    this.loadFunctionalities();
+    this.loadRoutes();
+    console.log("objectToUpdate", this.objectToUpdate);
   }
 };
 </script>

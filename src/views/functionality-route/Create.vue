@@ -10,7 +10,7 @@
                 id="functionality"
                 name="functionality"
                 label="name"
-                v-model="functionalityRoute.functionalityId"
+                v-model="objectToCreate.functionalityId"
                 :options="functionalities"
                 :reduce="(item) => item.id"
                 value="id"
@@ -25,7 +25,7 @@
                 id="routeId"
                 name="route"
                 label="routeDescription"
-                v-model="functionalityRoute.routeId"
+                v-model="objectToCreate.routeId"
                 :options="routes"
                 :reduce="(item) => item.id"
                 value="id"
@@ -77,7 +77,7 @@ export default {
   },
   data() {
     return {
-      functionalityRoute: new FunctionalityRoute({}),
+      objectToCreate: new FunctionalityRoute({}),
       functionalities: [],
       routes: [],
       loading: false,
@@ -96,7 +96,7 @@ export default {
       console.log("onSubmit");
 
       try {
-        await functionalityRouteService.createOne(this.functionalityRoute);
+        await functionalityRouteService.createOne(this.objectToCreate);
 
         this.bus.$emit("end-creating");
 

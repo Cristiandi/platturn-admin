@@ -53,7 +53,7 @@ class FunctionalityRouteService {
   }
 
   async createOne(functionalityRoute) {
-    console.log("functionalityRoute", functionalityRoute);
+    // console.log("functionalityRoute", functionalityRoute);
     const response = await axios.post(
       API_URL + "functionalities-routes",
       {
@@ -68,13 +68,12 @@ class FunctionalityRouteService {
     return data;
   }
 
-  async updateRoute(route) {
+  async updateOne(functionalityRoute) {
     const response = await axios.patch(
-      API_URL + "routes/" + route.id,
+      API_URL + "functionalities-routes/" + functionalityRoute.id,
       {
-        httpMethod: route.httpMethod,
-        path: route.path,
-        isPublic: route.isPublic
+        functionalityId: functionalityRoute.functionalityId,
+        routeId: functionalityRoute.routeId
       },
       { headers: authHeader() }
     );
@@ -84,10 +83,13 @@ class FunctionalityRouteService {
     return data;
   }
 
-  async deleteRoute(route) {
-    const response = await axios.delete(API_URL + "routes/" + route.id, {
-      headers: authHeader()
-    });
+  async deleteOne(functionalityRoute) {
+    const response = await axios.delete(
+      API_URL + "functionalities-routes/" + functionalityRoute.id,
+      {
+        headers: authHeader()
+      }
+    );
 
     const { data } = response;
 

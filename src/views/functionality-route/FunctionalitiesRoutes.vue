@@ -52,12 +52,12 @@
     <!-- use the modal component, pass in the prop -->
     <Modal v-if="showUpdatingModal" @close="endUpdating()">
       <h3 slot="header">Actualizar</h3>
-      <Update v-bind:bus="bus" v-bind:route="currentRoute" slot="body" />
+      <Update v-bind:bus="bus" v-bind:current="current" slot="body" />
     </Modal>
 
     <Modal v-if="showDeletingModel" @close="endDeleting()">
       <h3 slot="header">Eliminar</h3>
-      <Delete v-bind:bus="bus" v-bind:route="currentRoute" slot="body" />
+      <Delete v-bind:bus="bus" v-bind:current="current" slot="body" />
     </Modal>
   </div>
 </template>
@@ -66,8 +66,8 @@ import Vue from "vue";
 import Grid from "../../components/Grid/Grid";
 import Modal from "../../components/Modal/Modal";
 import Create from "./Create";
-// import Update from "./Update";
-// import Delete from "./Delete";
+import Update from "./Update";
+import Delete from "./Delete";
 import functionalityRouteService from "../../services/functionality-route.service";
 import { getFromObjectPathParsed } from "../../utils/functions";
 
@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       functionalitiesRoutes: [],
-      currentFuncRout: null,
+      current: null,
       columms: ["id", "functionality", "routePath", "routeMethod", "actions"],
       successful: false,
       message: "",
@@ -90,9 +90,9 @@ export default {
   components: {
     Grid,
     Modal,
-    Create
-    // Update,
-    // Delete
+    Create,
+    Update,
+    Delete
   },
   computed: {
     loggedIn() {
@@ -134,21 +134,21 @@ export default {
     endCreating() {
       this.showCreatingModal = false;
     },
-    initUpdating(route) {
+    initUpdating(current) {
       this.showUpdatingModal = true;
-      this.currentRoute = route;
+      this.current = current;
     },
     endUpdating() {
       this.showUpdatingModal = false;
-      this.currentRoute = null;
+      this.current = null;
     },
-    initDeleting(route) {
+    initDeleting(current) {
       this.showDeletingModel = true;
-      this.currentRoute = route;
+      this.current = current;
     },
     endDeleting() {
       this.showDeletingModel = false;
-      this.currentRoute = null;
+      this.current = null;
     }
   },
   mounted() {
