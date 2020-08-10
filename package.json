@@ -19,7 +19,7 @@
     "jquery": "3.5.1",
     "nan": "2.14.1",
     "popper.js": "1.16.1",
-    "vee-validate": "3.3.7",
+    "vee-validate": "3.3.9",
     "vue": "2.6.11",
     "vue-router": "3.3.4",
     "vue-select": "3.10.7",
